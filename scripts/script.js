@@ -24,17 +24,37 @@ for (let i = 0; i < userEmail.length; i++) {
         at++;
     }
     if (userEmail[i] == '.') {
-        dot++
+        dot++;
     }
 }
 console.log(`DOT: ${dot}, AT: ${at}`);
 
-// se dot >= 1 e di at ce ne è solo una assegno true alla variabile flag invalidInput
-let invalidInput = dot == 0 && at != 1 ? true : false;
-console.log(invalidInput);
+// se le condizioni sono verificate allora assegno true alla variabile flag isValidInput
+let isValidInput = userEmail.length != 0 && dot > 0 && at == 1 ? true : false;
+console.log(`L'input ${isValidInput ? 'è valido' : 'non è valido'}`);
 
+// imposto un ulteriore ciclo per controllare se la mail dell'utente è presente nell'elenco
 
+// dichiaro una variabile flag
+let mailCheck = false;
 
+// verifico se la mail è presente nell'array
+if (isValidInput) {
+    for (let i = 0; !mailCheck && i < emailList.length; i++) {
+        if (emailList[i] == userEmail) {
+            mailCheck = true;
+        }
+    }
+} else {
+    alert('Input non valido, refresha la pagina')
+}
+
+// stampo un messaggio in base all'esito del controllo
+if (mailCheck) {
+    alert('L\'utente è tra gli invitati');
+} else if (isValidInput && !mailCheck) {
+    alert('L\'utente non è tra gli invitati');
+}
 
 
 
